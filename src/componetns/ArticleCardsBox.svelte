@@ -10,6 +10,8 @@
   import { articles } from "../store/article";
   import { ArticleApi } from "../api/ArticleApi";
 
+  $: count = `Article Count: ${$articles.length}`;
+
   const fetch = async () => {
     // reset store data.
     articles.set([]);
@@ -20,7 +22,9 @@
   };
 
   // fetch articles.
-  onMount(fetch);
+  let promise;
+  const reload = async () => (promise = fetch());
+  onMount(reload);
 </script>
 
 <style>
@@ -43,11 +47,19 @@
 <div class="article-cards-box">
   <div class="article-cards-title">Article List</div>
 
-  <ReloadArticlesButton {fetch} articles={$articles} />
+  <p>{count}</p>
 
-  {#if $articles.length === 0}
+  <ReloadArticlesButton fetch={reload} articles={$articles} />
+
+  {#await promise}
     <ArticlesLoading />
-  {:else}
-    <ArticleCards articles={$articles} />
-  {/if}
+  {:then result}
+    {#if $articles.length !== 0}
+      <ArticleCards articles={$articles} />
+    {:else}
+      <p>not articles</p>
+    {/if}
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
 </div>
