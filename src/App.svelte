@@ -1,17 +1,21 @@
 <script lang="ts">
-  import ArticleCardsBox from "./componetns/ArticleCardsBox.svelte";
+  import CoffeeTastePage from "./componetns/pages/CoffeeTastePage.svelte";
 </script>
 
 <style>
   main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: #fafafa;
-    padding: 30px;
+    justify-content: center;
+    background-color: #36443f85;
   }
 </style>
 
 <main>
-  <ArticleCardsBox />
+  <CoffeeTastePage />
 </main>
