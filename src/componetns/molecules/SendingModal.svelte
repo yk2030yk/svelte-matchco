@@ -1,7 +1,7 @@
 <script lang="ts">
   import Spinner from "svelte-spinner";
   import Modal from "../atoms/Modal.svelte";
-  import { isSendingAnswer } from "../../store/answer";
+  import { isSending } from "../../store/answer";
 </script>
 
 <style>
@@ -15,7 +15,7 @@
   }
 </style>
 
-{#if $isSendingAnswer}
+{#if $isSending}
   <Modal>
     <div class="content">
       <p>マッチするコーヒー豆を探してるよ...！</p>

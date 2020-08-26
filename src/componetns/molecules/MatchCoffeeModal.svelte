@@ -1,17 +1,9 @@
 <script lang="ts">
   import Spinner from "svelte-spinner";
   import Modal from "../atoms/Modal.svelte";
-  import { isOpenMatchCoffeeModal } from "../../store/answer";
-  import { MatchCoffee } from "../../models/MatchCoffee";
+  import { isOpenMatchCoffeeModal, matchCoffee } from "../../store/answer";
 
   const close = () => isOpenMatchCoffeeModal.set(false);
-
-  const matchCoffee = new MatchCoffee(
-    "レジェンドボス（自動販売機限定）",
-    `あなたは缶コーヒーで充分！
-缶コーヒーはどこでも買えます！
-素晴らしいコーヒーライフをお楽しみください！`
-  );
 </script>
 
 <style>
@@ -42,13 +34,13 @@
   }
 </style>
 
-{#if $isOpenMatchCoffeeModal}
+{#if $isOpenMatchCoffeeModal && $matchCoffee}
   <Modal {close}>
     <div class="content">
-      <img src="images/coffee.png" alt="coffeee" />
+      <img src={$matchCoffee.img} alt="coffeee" />
       <p>マッチするコーヒー豆はこれ！</p>
-      <p class="name">「{matchCoffee.name}」</p>
-      <p>{matchCoffee.description}</p>
+      <p class="name">「{$matchCoffee.name}」</p>
+      <p>{$matchCoffee.description}</p>
       <p class="notice">※これはモックデータだよ</p>
     </div>
   </Modal>

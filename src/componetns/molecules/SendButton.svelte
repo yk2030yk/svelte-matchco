@@ -3,19 +3,24 @@
   import { question1 } from "../../consts/questions";
   import {
     answer,
-    isSendingAnswer,
+    matchCoffee,
+    isSending,
     isOpenMatchCoffeeModal,
   } from "../../store/answer";
-  import { answerApi } from "../../api/AnswerApi";
+  import { matchCoffeeApi } from "../../api/MatchCoffeeApi";
 
   const handleClick = async () => {
-    isSendingAnswer.set(true);
-    await answerApi.post($answer);
-    isSendingAnswer.set(false);
+    isSending.set(true);
+    matchCoffee.set(null);
+
+    const latestMatchCoffee = await matchCoffeeApi.post($answer);
+    matchCoffee.set(latestMatchCoffee);
+
+    isSending.set(false);
     isOpenMatchCoffeeModal.set(true);
   };
 </script>
 
-<Button {handleClick} disabled={$isSendingAnswer}>
+<Button {handleClick} disabled={$isSending}>
   マッチするコーヒー豆を探す！
 </Button>

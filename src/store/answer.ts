@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 import type { Answer } from "../models/Answer";
+import type { MatchCoffee } from "../models/MatchCoffee";
 
 export const answer = writable<Answer>({
   q1: "1",
@@ -10,6 +11,8 @@ export const answer = writable<Answer>({
   q6: "1",
 });
 
-export const isSendingAnswer = writable<boolean>(false);
+export const isSending = writable<boolean>(false);
 
 export const isOpenMatchCoffeeModal = writable<boolean>(false);
+
+export const matchCoffee = writable<MatchCoffee>(null);
