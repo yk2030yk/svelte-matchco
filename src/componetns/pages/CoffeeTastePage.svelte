@@ -40,10 +40,23 @@
   .bottom-area {
     margin-top: 50px;
   }
+
+  .logo {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    background-color: #18a04a;
+    color: #fff;
+    padding: 7px;
+    width: 140px;
+    font-family: "Balsamiq Sans", cursive;
+    font-family: "Pacifico", cursive;
+  }
 </style>
 
 <div class="card" transition:fade>
-  <div class="title">あなたとコーヒーをマッチング！</div>
+  <div class="logo">Matchco</div>
+  <div class="title">- あなたとコーヒーをマッチング！ -</div>
   <div class="layout">
     <div class="layout-left">
       <CoffeeTasteGraphBox />
